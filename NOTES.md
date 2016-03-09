@@ -20,7 +20,7 @@ Further, debian blocks 'gem update --system' which you can get around by doing:
     % gem install rubygems-update
     % ruby /var/lib/gems/1.8/gems/rubygems-update-1.3.1/bin/update_rubygems
 
-I recommend packaging 'rubygems-update' (fpm -s gem -t deb rubygems-update) and
+I recommend packaging 'rubygems-update' (pm -s gem -t deb rubygems-update) and
 possibly running the update_rubygems as a postinstall, even though I don't like
 postinstalls. I haven't looked yet to see what is required to mimic (if
 possible) the actions of that script simply in a tarball.
@@ -44,7 +44,7 @@ postinstall step to make a python module work is quite silly - though I'm sure
 (I hope) Debian had good reason.
 
 So, I'm going to try working on a howto for recommended ways to build python
-packages with fpm in debian. It will likely require a one-time addition to
+packages with pm in debian. It will likely require a one-time addition to
 site.py (/usr/lib/python2.6/site.py) or some other PYTHONPATH hackery, though
 I don't know just yet.
 

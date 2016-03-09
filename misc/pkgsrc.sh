@@ -51,7 +51,7 @@ for target in $TARGETS; do
     DESTDIR=$DESTDIR SKIP_DEPENDS=yes \
     clean package || exit 1
 
-  # Start building fpm args
+  # Start building pm args
   set -- -n "$name" -v "$version" --prefix $LOCALBASE
 
   # Skip the pkgsrc package metadata files
@@ -66,7 +66,7 @@ for target in $TARGETS; do
 
   set -- -s tar -t deb "$@"
   set -- "$@" packages/All/$name-$orig_version.tgz
-  fpm "$@"
+  pm "$@"
 done
 
 

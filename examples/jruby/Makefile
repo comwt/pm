@@ -25,11 +25,11 @@ $(TARDIR): $(TARBALL)
 
 .PHONY: deb
 deb: $(TARDIR)
-	fpm -s dir -t deb -v $(VERSION) -n $(NAME) -d "sun-java6-bin (>> 0)" \
+	pm -s dir -t deb -v $(VERSION) -n $(NAME) -d "sun-java6-bin (>> 0)" \
 		-a all -d "sun-java6-jre (>> 0)" --prefix $(PREFIX) -C $(TARDIR) .
 
 .PHONY: rpm
 rpm: $(TARDIR)
-	fpm -s dir -t rpm -v $(VERSION) -n $(NAME) -d "jdk >= 1.6.0" \
+	pm -s dir -t rpm -v $(VERSION) -n $(NAME) -d "jdk >= 1.6.0" \
 		-a all --prefix $(PREFIX) -C $(TARDIR) .
 

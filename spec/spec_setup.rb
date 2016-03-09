@@ -9,8 +9,8 @@ require "fileutils" # stdlib
 $: << File.join(File.dirname(File.dirname(__FILE__)), "lib")
 
 # for method "program_exists?" etc
-require "fpm/util"
-include FPM::Util
+require "pm/util"
+include PM::Util
 
 # Enable debug logs if requested.
 if $DEBUG or ENV["DEBUG"]

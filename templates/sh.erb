@@ -3,7 +3,7 @@
 # bail out if any part of this fails
 set -e
 
-# This is the self-extracting installer script for an FPM shell installer package.
+# This is the self-extracting installer script for an PM shell installer package.
 # It contains the logic to unpack a tar archive appended to the end of this script
 # and, optionally, to run post install logic.
 # Run the package file with -h to see a usage message or look at the print_usage method.
@@ -109,14 +109,14 @@ function kill_others(){
 }
 
 # echos metadata file. A function so that we can have it change after we set INSTALL_ROOT
-function fpm_metadata_file(){
+function pm_metadata_file(){
     echo "${INSTALL_ROOT}/.install-metadata"
 }
 
 # if this package was installed at this location already we will find a metadata file with the details
 # about the installation that we left here. Load from that if available but allow command line args to trump
 function load_environment(){
-    local METADATA=$(fpm_metadata_file)
+    local METADATA=$(pm_metadata_file)
     if [ -r "${METADATA}" ] ; then
         log "Found existing metadata file '${METADATA}'. Loading previous install details. Env vars in current environment will take precedence over saved values."
         local TMP="/tmp/$(basename $0).$$.tmp"
@@ -195,7 +195,7 @@ function unpack_payload(){
 }
 
 function run_post_install(){
-    local AFTER_INSTALL=$INSTALL_DIR/.fpm/after_install
+    local AFTER_INSTALL=$INSTALL_DIR/.pm/after_install
     if [ -r $AFTER_INSTALL ] ; then
         set_post_install_vars
         chmod +x $AFTER_INSTALL
@@ -359,7 +359,7 @@ load_environment
 parse_args $*
 
 main
-save_environment $(fpm_metadata_file)
+save_environment $(pm_metadata_file)
 exit 0
 
 __METADATA__

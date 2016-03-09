@@ -1,7 +1,7 @@
-require "fpm/namespace"
-require "fpm/package"
+require "pm/namespace"
+require "pm/package"
 
-class FPM::Package::Mock < FPM::Package
+class PM::Package::Mock < PM::Package
   def input(*args); end
   def output(*args); end
 end

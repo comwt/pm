@@ -1,31 +1,31 @@
-# Effing Package Management
+# Package Maker
 
 ## Preface
 
-Package maintainers work hard and take a lot of shit. You can't please
+Package maintainers work hard and take a lot of pounding. You can't please
 everyone. So, if you're a maintainer: Thanks for maintaining packages!
 
-## What is fpm?
+## What is pm?
 
 It helps you build packages quickly and easily (Packages like RPM and DEB
 formats).
 
-FUNDAMENTAL PRINCIPLE: IF FPM IS NOT HELPING YOU MAKE PACKAGES EASILY, THEN
-THERE IS A BUG IN FPM.
+FUNDAMENTAL PRINCIPLE: IF PM IS NOT HELPING YOU MAKE PACKAGES EASILY, THEN
+THERE IS A BUG IN PM.
 
-Here is a presentation I gave on fpm at BayLISA: <http://goo.gl/sWs3Z> (I
-included speaker notes you can read, too)
+Here is a presentation given on pm at BayLISA: <http://goo.gl/sWs3Z> (includes
+speaker notes you can read, too)
 
-At BayLISA in April 2011, I gave a talk about fpm. At the end, I asked "What
-can I package for you?"
+At BayLISA in April 2011, a talk was given about pm. At the end, it was asked
+"What can I package for you?"
 
 Someone asked for memcached.
 
 Google for 'memcached', download the source, unpack, ./configure, make, make
-install, fpm, deploy.
+install, pm, deploy.
 
-In 60 seconds, starting from nothing, I had both an RPM and a .DEB of memcached
-ready to deploy, and I didn't need to know how to use rpmbuild, rpm specfiles,
+In 60 seconds, starting from nothing, we had both an RPM and a .DEB of memcached
+ready to deploy, and we didn't need to know how to use rpmbuild, rpm specfiles,
 dh\_make, debian control files, etc.
 
 ## Backstory
@@ -46,17 +46,17 @@ save myself (and you) that pain in the future.
 It should be easy to say "here's my install dir and here's some dependencies;
 please make a package"
 
-## The Solution - FPM
+## The Solution - PM
 
-I want a simple way to create packages without all the bullshit. In my own
+We want a simple way to create packages without all the bologna. In my own
 infrastructure, I have no interest in Debian policy and RedHat packaging
 guidelines - I have interest in my group's own style culture and have a very strong
 interest in getting work done.
 
-(This is not to say that you can't create packages with FPM that obey Debian or
+(This is not to say that you can't create packages with PM that obey Debian or
 RedHat policies, you can and should if that is what you desire)
 
-The goal of FPM is to be able to easily build platform-native packages.
+The goal of PM is to be able to easily build platform-native packages.
 
 * Creating packages easily (deb, rpm, etc)
 * Tweaking existing packages (removing files, changing metadata/dependencies)
@@ -65,27 +65,27 @@ The goal of FPM is to be able to easily build platform-native packages.
 ## System packages
 
 Many Linux distros do not ship ruby C headers or a compiler by default, and
-you'll need that to install fpm.
+you'll need that to install pm.
 
     apt-get install ruby-dev gcc make
     
     yum install ruby-devel gcc
 
 Additional packages will be required depending on the source and target package
-types (rpmbuild for rpm, etc.). FPM will show the commands that are required
+types (rpmbuild for rpm, etc.). PM will show the commands that are required
 which you must map to your distribution's package names.
 
 ## Get with the download
 
-You can install fpm with gem:
+You can install pm with gem:
 
-    gem install fpm
+    gem install pm
     
 (On OS X, you may also need gnutar: `brew install gnu-tar`.)
 
 Building a package named "awesome" might look something like this:
 
-    fpm -s <source type> -t <target type> [list of sources]...
+    pm -s <source type> -t <target type> [list of sources]...
 
 "Source type" is what your package is coming from; a directory (dir), a rubygem
 (gem), an rpm (rpm), a python package (python), a php pear module (pear), etc.
@@ -93,13 +93,13 @@ Building a package named "awesome" might look something like this:
 "Target type" is what your output package form should be. Most common are "rpm"
 and "deb" but others exist (solaris, etc)
 
-You have two options for learning to run FPM:
+You have two options for learning to run PM:
 
-1. If you're impatient, just scan through `fpm --help`; you'll need various
+1. If you're impatient, just scan through `pm --help`; you'll need various
    options, and they're reasonably straightforward. Impatient learning is
-   totally welcome, and if you run into issues, ask questions in #fpm on
+   totally welcome, and if you run into issues, ask questions in #pm on
    freenode irc or on fpm-users@googlegroups.com!
-1. [The wiki](https://github.com/jordansissel/fpm/wiki) has explanations and
+1. [The wiki](https://github.com/comwt/pm/wiki) has explanations and
    examples. If you run into problems, I welcome you to ask questions in #fpm
    on freenode irc or on fpm-users@googlegroups.com!
 
@@ -137,7 +137,7 @@ need it..
 
 That said, some basic guidelines, which you are free to ignore :)
 
-* Have a problem you want fpm to solve for you? You can email the
+* Have a problem you want pm to solve for you? You can email the
   [mailing list](http://groups.google.com/group/fpm-users), or
   join the IRC channel #fpm on irc.freenode.org, or email me personally
   (jls@semicomplete.com)
@@ -162,40 +162,40 @@ By participating in this project you agree to abide by its terms. See
 the [CODE\_OF\_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 First, create a GitHub account if you do not already have one.  Log in to
-GitHub and go to [the main fpm GitHub page](https://github.com/jordansissel/fpm).
+GitHub and go to [the main pm GitHub page](https://github.com/comwt/pm).
 
 At the top right, click on the button labeled "Fork".  This will put a forked
-copy of the main fpm repo into your account.  Next, clone your account's GitHub
-repo of fpm.  For example:
+copy of the main pm repo into your account.  Next, clone your account's GitHub
+repo of pm.  For example:
 
-    $ git clone git@github.com:yourusername/fpm.git
+    $ git clone git@github.com:yourusername/pm.git
 
 If you don't already have the bundler gem installed, install it now:
 
     $ gem install bundler
 
-Now change to the root of the fpm repo and run:
+Now change to the root of the pm repo and run:
 
     $ bundle install
 
-This will install all of the dependencies required for running fpm from source.
+This will install all of the dependencies required for running pm from source.
 Most importantly, you should see the following output from the bundle command
-when it lists the fpm gem:
+when it lists the pm gem:
 
     ...
     Using json (1.8.1) 
-    Using fpm (0.4.42) from source at .
+    Using pm (0.4.42) from source at .
     Using hitimes (1.2.1) 
     ...
 
-Next, run make in root of the fpm repo.  If there are any problems (such as
+Next, run make in root of the pm repo.  If there are any problems (such as
 missing dependencies) you should receive an error
 
-At this point, the fpm command should run directly from the code in your cloned
+At this point, the pm command should run directly from the code in your cloned
 repo.  Now simply make whatever changes you want, commit the code, and push
 your commit back to master.
 
-If you think your changes are ready to be merged back to the main fpm repo, you
+If you think your changes are ready to be merged back to the main pm repo, you
 can generate a pull request on the GitHub website for your repo and send it in
 for review.
 
@@ -212,5 +212,5 @@ Finally, click the install button on the prompt that appears.
 
 ## More Documentation
 
-[See the wiki for more docs](https://github.com/jordansissel/fpm/wiki)
+[See the wiki for more docs](https://github.com/comwt/pm/wiki)
 

@@ -1,7 +1,7 @@
 # Hello packaging friend!
 #
-# If you find yourself using this 'fpm --edit' feature frequently, it is
-# a sign that fpm is missing a feature! I welcome your feature requests!
+# If you find yourself using this 'pm --edit' feature frequently, it is
+# a sign that pm is missing a feature! I welcome your feature requests!
 # Please visit the following URL and ask for a feature that helps you never
 # need to edit this file again! :)
 #   https://github.com/jordansissel/fpm/issues
@@ -56,7 +56,7 @@ AutoReq: yes
 AutoProv: yes
 <% end -%>
 # Seems specifying BuildRoot is required on older rpmbuild (like on CentOS 5)
-# fpm passes '--define buildroot ...' on the commandline, so just reuse that.
+# pm passes '--define buildroot ...' on the commandline, so just reuse that.
 BuildRoot: %buildroot
 # Add prefix, must not end with /
 <% if !prefix.nil? and !prefix.empty? %>
@@ -66,7 +66,7 @@ Prefix: <%= prefix.gsub(/([^\/]+)(\/$)/, '') %>
 Group: <%= category %>
 <%# Sometimes the 'license' field has multiple lines... Hack around it. 
   # While technically yes this means we are 'modifying' the license,
-  # since the job of FPM is to get shit done and that this is  only
+  # since the job of PM is to get stuff done and that this is  only
   # modifying whitespace, it should be reasonably OK. -%>
 License: <%= license.gsub("\n", " ") %>
 <% if !vendor.nil? and !vendor.empty? -%>
